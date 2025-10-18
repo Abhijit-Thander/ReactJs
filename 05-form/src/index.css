@@ -1,0 +1,18 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+html,
+body {
+  height: 100%;
+  background-color: #222;
+}
+
+input,
+button {
+  padding: 10px 20px;
+  margin: 40px;
+  border-radius: 6px;
+  border: none;
+}
