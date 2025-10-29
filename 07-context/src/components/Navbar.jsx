@@ -1,4 +1,3 @@
-import React from "react";
 import Nav2 from "./Nav2";
 import { useTheme } from "../Context/ThemeContext";
 
