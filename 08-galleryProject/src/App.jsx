@@ -4,13 +4,14 @@ import Card from "./components/Card";
 
 const App = () => {
   const [userdata, setUserData] = useState([]);
+  const [index, setIndex] = useState(1);
   const [loading, setLoading] = useState(true);
 
   const getData = async () => {
     try {
       setLoading(true);
       const res = await axios.get(
-        `https://picsum.photos/v2/list?page=4&limit=20`
+        `https://picsum.photos/v2/list?page=${index}&limit=16`
       );
       setUserData(res.data);
     } catch (error) {
@@ -22,7 +23,7 @@ const App = () => {
 
   useEffect(() => {
     getData();
-  }, []);
+  }, [index]);
 
   return (
     <div className="min-h-screen bg-gray-900 text-white flex flex-col items-center">
@@ -37,6 +38,26 @@ const App = () => {
           {userdata.map((item, idx) => (
             <Card key={idx} item={item} />
           ))}
+
+          <div className="gap-8 flex mt-2 mb-4 justify-center items-center col-span-full">
+            <button
+              className="bg-yellow-600 px-2 py-1.5 rounded-md cursor-pointer active:scale-95"
+              onClick={() => {
+                if (index > 1) {
+                  setIndex(index - 1);
+                }
+              }}
+            >
+              Previous
+            </button>
+            <h4>Page {index}</h4>
+            <button
+              onClick={() => setIndex(index + 1)}
+              className="bg-green-600 px-2 py-1.5 rounded-md cursor-pointer active:scale-95"
+            >
+              Next
+            </button>
+          </div>
         </div>
       )}
     </div>
